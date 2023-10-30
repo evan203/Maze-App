@@ -4,14 +4,21 @@ import java.io.*;
 class Maze
 {
     private Square[][]  maze;
+    private Square start;
+    private Square finish;
+
+    private String currentFName = null;
 
     public Maze()
     {
 
     }
 
-    boolean loadMaze(String fname)
+    public boolean loadMaze(String fname)
     {
+        currentFName = fname;
+
+
         File f = new File(fname);
         Scanner scn = new Scanner(f);
 
@@ -28,29 +35,53 @@ class Maze
             for (int col; col < numCols; col++)
             {
                 maze[row][col] = new Square(row, col, Integer.parseInt(s[col]));
+                
+                if (maze[row][col].getType() == 2)
+                    start = maze[row][col]
+                else if (maze[row][col].getType() == 3)
+                    finish = maze[row][col];
             }
         }
     }
 
-    ArrayList<Square> getNeighbors(Square sq)
+    public ArrayList<Square> getNeighbors(Square sq)
     {
-        
-    }
-    Square getStart()
-    {
+        ArrayList<Square> neighbors = new ArrayList<Square>();
 
-    }
-    Square getFinish()
-    {
+        if(sq.getRow() != 0) neighbors.add(maze[sq.getRow() - 1][sq.getCol()]);
+        if(sq.getRow() != maze.length - 1) neighbors.add(maze[sq.getRow() + 1][sq.getCol()]);
+        if(sq.getCol() != 0) neighbors.add(maze[sq.getRow()][sq.getCol() - 1]);
+        if(sq.getCol() != maze[0].length - 1) neighbors.add(maze[sq.getRow()][sq.getCol() + 1]);
 
+        return neighbors;
     }
-    void reset()
-    {
 
+    public Square getStart()
+    {
+        return start;
     }
-    String toString
+    public Square getFinish()
     {
+        return finish;
+    }
+    public void reset()
+    {
+        if (currentFName != null) loadMaze(currentFName);
+    }
 
+    public String toString()
+    {
+        String ans = "";
+        for (Square[] row : maze)
+        {
+            for (Square s : row)
+            {
+                ans += s + " ";
+            }
+            ans += "\n";
+        }
+
+        return ans;
     }
 
 }
