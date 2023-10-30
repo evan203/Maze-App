@@ -14,12 +14,22 @@ class Maze
 
     }
 
-    public boolean loadMaze(String fname)
+    public boolean loadMaze(String fname) throws FileNotFoundException
     {
         currentFName = fname;
+        boolean b = false;
 
+        File f;
+        try
+        {
+            f = new File(fname);
+        }
+        catch(Exception e)
+        {
+            System.out.println("There was a problem loading the maze file");
+            throw new FileNotFoundException();
+        }
 
-        File f = new File(fname);
         Scanner scn = new Scanner(f);
 
         String[] dimension = scn.nextLine().split(" ");
@@ -32,16 +42,19 @@ class Maze
         for (int row = 0; row < numRows; row++)
         {            
             String[] s = scn.nextLine().split(" ");
-            for (int col; col < numCols; col++)
+            for (int col = 0; col < numCols; col++)
             {
                 maze[row][col] = new Square(row, col, Integer.parseInt(s[col]));
                 
                 if (maze[row][col].getType() == 2)
-                    start = maze[row][col]
+                    start = maze[row][col];
                 else if (maze[row][col].getType() == 3)
                     finish = maze[row][col];
             }
         }
+
+        b = true;
+        return b;
     }
 
     public ArrayList<Square> getNeighbors(Square sq)
@@ -64,7 +77,7 @@ class Maze
     {
         return finish;
     }
-    public void reset()
+    public void reset() throws FileNotFoundException
     {
         if (currentFName != null) loadMaze(currentFName);
     }
