@@ -11,55 +11,37 @@ public class MazeTest {
 
     @Before
     public void setUp() {
-        // Initialize a Square object before each test
+        // Initialize a Square and Maze object before each test
         square = new Square(2, 3, 1);
         maze = new Maze();
 
     }
 
     @Before
-    public void testLoadMaze() throws FileNotFoundException {
+    public void testLoadMaze() {
         String mazeFile = "src/maze-1";
-        boolean b;
-        try{
-            b = maze.loadMaze(mazeFile);
-        }
-        catch(FileNotFoundException e)
-        {
-            throw new FileNotFoundException();
-        }
-        boolean expectedCondition = true;
-        assertEquals(expectedCondition, b);
+        assertEquals(true, maze.loadMaze(mazeFile));
     }
 
     @Test
     public void testGetNeighbors() {
-        square = new Square(2, 3, 1);
-        ArrayList<Square> neighbors= new ArrayList<>();
-        assertEquals(neighbors, maze.getNeighbors(square));
+        square = new Square(2, 2, 1);
+        assertEquals("[_, _]", maze.getNeighbors(square).toString());
     }
 
     @Test
     public void testGetStart() {
-        square = new Square(2, 3, 1);
-        assertEquals(square, maze.getStart());
+        assertEquals(2, maze.getStart().getType());
     }
 
     @Test
     public void testGetFinish() {
-        square = new Square(2, 3, 1);
-        assertEquals(square, maze.getFinish());
+        assertEquals(3, maze.getFinish().getType());
     }
 
     @Test
     public void testReset() throws FileNotFoundException{
-        try{
-            maze.reset();
-        }
-        catch(FileNotFoundException e)
-        {
-            throw new FileNotFoundException();
-        }
+        maze.reset();
         // does the maze thats just been reset contain an characters that shouldn't be there?
         // store the toString of maze into a string vraibale
         String s = maze.toString();
@@ -70,14 +52,13 @@ public class MazeTest {
                     b = true;
                     break;
             }
-        
 
         assertEquals(false, b);
     }
 
     @Test
     public void testToStringMaze() {
-        String expectedString = "#";
+        String expectedString = "s _ _ \n_ _ _ \n_ _ e \n";
         assertEquals(expectedString, maze.toString());
     }
 

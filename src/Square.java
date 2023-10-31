@@ -33,6 +33,7 @@ public class Square {
     public int getRow() {return this.row;}
     public int getCol() {return this.col;}
     public int getType() {return this.type;}
+    public Boolean equals(Square s) {return this.row == s.getRow() && this.col == s.getCol() && this.type == s.getType();}
 
 
 }

@@ -14,23 +14,20 @@ class Maze
 
     }
 
-    public boolean loadMaze(String fname) throws FileNotFoundException
+    public boolean loadMaze(String fname) 
     {
         currentFName = fname;
-        boolean b = false;
 
-        File f;
+        Scanner scn;
         try
         {
-            f = new File(fname);
+            scn = new Scanner(new File(fname));
         }
         catch(Exception e)
         {
             System.out.println("There was a problem loading the maze file");
-            throw new FileNotFoundException();
+            return false;
         }
-
-        Scanner scn = new Scanner(f);
 
         String[] dimension = scn.nextLine().split(" ");
 
@@ -53,18 +50,22 @@ class Maze
             }
         }
 
-        b = true;
-        return b;
+        return true;
     }
 
     public ArrayList<Square> getNeighbors(Square sq)
     {
         ArrayList<Square> neighbors = new ArrayList<Square>();
 
-        if(sq.getRow() != 0) neighbors.add(maze[sq.getRow() - 1][sq.getCol()]);
-        if(sq.getRow() != maze.length - 1) neighbors.add(maze[sq.getRow() + 1][sq.getCol()]);
-        if(sq.getCol() != 0) neighbors.add(maze[sq.getRow()][sq.getCol() - 1]);
-        if(sq.getCol() != maze[0].length - 1) neighbors.add(maze[sq.getRow()][sq.getCol() + 1]);
+        /*
+         * ...
+         * ...
+         * ...
+         */
+        if(sq.getRow() > 0)                neighbors.add(maze[sq.getRow() - 1][sq.getCol()]);
+        if(sq.getRow() < maze.length - 1)  neighbors.add(maze[sq.getRow() + 1][sq.getCol()]);
+        if(sq.getCol() > 0)                neighbors.add(maze[sq.getRow()][sq.getCol() - 1]);
+        if(sq.getCol() < maze[0].length - 1) neighbors.add(maze[sq.getRow()][sq.getCol() + 1]);
 
         return neighbors;
     }
@@ -77,7 +78,7 @@ class Maze
     {
         return finish;
     }
-    public void reset() throws FileNotFoundException
+    public void reset() 
     {
         if (currentFName != null) loadMaze(currentFName);
     }
