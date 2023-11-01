@@ -19,36 +19,64 @@ public class MyQueueTest
     @Test
     public void testEnqueue() 
     {
-        
+        String s1 = "test";
+        queue.enqueue(s1);
+        String s2 = "test";
+        queue.enqueue(s2);
+        boolean c = false;
+        assertEquals(c, queue.isEmpty());
     }
 
     @Test
     public void testDequeue() throws NoSuchElementException
     {
-        
+        String s = "test";
+        Object b;
+        try
+        {
+            b = queue.dequeue();
+        }
+        catch(NoSuchElementException e)
+        {
+            throw new NoSuchElementException();
+        }
+        boolean c = false;
+        assertEquals(c, queue.isEmpty());
     }
     
     @Test
     public void testFront() throws NoSuchElementException
     {
-        
+        Object b;
+        try
+        {
+            b = queue.front();
+        }
+        catch(NoSuchElementException e)
+        {
+            throw new NoSuchElementException();
+        }
+        assertEquals(b, queue.front());
     }
 
     @Test
     public void testSize() 
     {
-        
+        int size = 0;
+        assertEquals(size, queue.size());
     }
 
     @Test
     public void testIsEmpty() 
     {
-        
+        boolean empty = true;
+        assertEquals(empty, queue.isEmpty());
     }
 
     @Test
     public void testClear() 
     {
-        
+        boolean empty = true;
+        assertEquals(empty, queue.isEmpty());
     }
 }
