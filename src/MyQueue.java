@@ -5,7 +5,6 @@ import java.util.Queue;
 public class MyQueue implements QueueADT
 {
     private Node first;
-    private Node last;
 
     /**
      * Constructs an empty stack.
@@ -13,7 +12,6 @@ public class MyQueue implements QueueADT
     public MyQueue()
     {
         first = null;
-        last = null;
     }
 
     /**
@@ -22,10 +20,22 @@ public class MyQueue implements QueueADT
      */
     public void enqueue(Object item)
     {
-        Node newNode = new Node();
-        newNode.data = item;
-        newNode.next = null;
-        last = newNode;
+        Node newItem = new Node();
+        newItem.data = item;
+
+        if(first == null)
+        {
+            first = newItem;
+        }
+        else
+        {
+            Node current = first;
+            while(current.next != null)
+            {
+                current = current.next;
+            }
+            current.next = newItem;
+        }
     }
 
     /**
