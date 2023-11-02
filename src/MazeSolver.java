@@ -2,6 +2,8 @@
 
 public abstract class MazeSolver 
 {
+    private Maze maze;
+
     abstract void makeEmpty();
     abstract boolean isEmpty();
     abstract void add(Square sq);
@@ -9,7 +11,7 @@ public abstract class MazeSolver
     
     MazeSolver(Maze maze)
     {
-
+        this.maze = maze;
     }
     boolean isSolved()
     {
@@ -21,7 +23,7 @@ public abstract class MazeSolver
     }
     Square step()
     {
-        
+
     }
     void solve()
     {
