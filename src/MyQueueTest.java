@@ -30,7 +30,6 @@ public class MyQueueTest
     @Test
     public void testDequeue() throws NoSuchElementException
     {
-        String s = "test";
         Object b;
         try
         {
@@ -41,7 +40,7 @@ public class MyQueueTest
             throw new NoSuchElementException();
         }
         boolean c = false;
-        assertEquals(c, queue.isEmpty());
+        assertEquals(c, queue.dequeue());
     }
     
     @Test
