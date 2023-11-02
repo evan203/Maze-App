@@ -1,31 +1,55 @@
-
+import java.util.ArrayList;
 
 public abstract class MazeSolver 
 {
     private Maze maze;
 
-    abstract void makeEmpty();
-    abstract boolean isEmpty();
-    abstract void add(Square sq);
-    abstract Square next();
+    abstract public void makeEmpty();
+
+    abstract public boolean isEmpty();
+
+    abstract public void add(Square sq);
+
+    abstract public Square next();
     
     MazeSolver(Maze maze)
     {
         this.maze = maze;
     }
-    boolean isSolved()
+
+    public boolean isSolved()
     {
-        
+        boolean solve;
+        ArrayList<Square> neighbors = maze.getNeighbors(maze.getFinish());
+        for (Square s : neighbors)
+        {
+            if (s.getType() == 3)
+            {
+                return true;
+            }
+        }
+        return false;
     }
-    String getPath()
+
+    public String getPath()
+    {
+        if(isSolved())
+        {
+            String path;
+            
+        }
+        else 
+        {
+            return "No such Path";
+        }
+    }
+
+    public Square step()
     {
 
     }
-    Square step()
-    {
 
-    }
-    void solve()
+    public void solve()
     {
         while (step() != null)
         {
