@@ -30,32 +30,20 @@ public class MyQueueTest
     @Test
     public void testDequeue() throws NoSuchElementException
     {
-        Object b;
-        try
-        {
-            b = queue.dequeue();
-        }
-        catch(NoSuchElementException e)
-        {
-            throw new NoSuchElementException();
-        }
-        boolean c = false;
-        assertEquals(c, queue.dequeue());
+        String s1 = "t";
+        String s2 = "t";
+        queue.enqueue(s1);
+        queue.enqueue(s2);
+        assertEquals(s1, queue.dequeue());
+        assertEquals(s1, queue.front());
     }
     
     @Test
     public void testFront() throws NoSuchElementException
     {
-        Object b;
-        try
-        {
-            b = queue.front();
-        }
-        catch(NoSuchElementException e)
-        {
-            throw new NoSuchElementException();
-        }
-        assertEquals(b, queue.front());
+        String s = "t";
+        queue.enqueue(s);
+        assertEquals(s, queue.front());
     }
 
     @Test
