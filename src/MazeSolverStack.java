@@ -8,11 +8,12 @@ public class MazeSolverStack extends MazeSolver{
 
     public void makeEmpty()
     {
-
+        while (!stack.isEmpty())
+            stack.pop();
     }
     public boolean isEmpty()
     {
-
+        return stack.isEmpty();
     }
     public void add(Square sq)
     {
@@ -20,7 +21,7 @@ public class MazeSolverStack extends MazeSolver{
     }
     public Square next()
     {
-
+        return stack.top();
     }
     
 
