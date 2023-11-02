@@ -1,18 +1,21 @@
 
 import java.util.*;
 
-public class MyStack implements StackADT
+public class MyStack<T> implements StackADT
 {
     private ArrayList list;
 
-    public MyStack()
+    T obj;
+
+    public MyStack(T obj)
     {
-        list = new ArrayList<>();
+        this.obj = obj;
+        list = new ArrayList<T>();
     }
 
     public void clear()
     {
-        list = new ArrayList<>();
+        list = new ArrayList<T>();
     }
 
     public int size()
