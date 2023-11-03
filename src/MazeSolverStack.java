@@ -1,9 +1,10 @@
 public class MazeSolverStack extends MazeSolver{
     
-    private MyStack stack;
+    private MyStack<Square> stack;
     public MazeSolverStack(Maze m)
     {
         super(m);
+        stack = new MyStack<Square>();
     }
 
     public void makeEmpty()
