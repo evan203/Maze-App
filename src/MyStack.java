@@ -1,15 +1,12 @@
 
 import java.util.*;
 
-public class MyStack<T> implements StackADT
+public class MyStack<T> implements StackADT<T>
 {
     private ArrayList<T> list;
-    T t;
 
-
-    public MyStack(T t)
+    public MyStack()
     {
-        this.t = t;
         list = new ArrayList<T>();
     }
 
@@ -28,7 +25,7 @@ public class MyStack<T> implements StackADT
         return list.size() == 0;
     }
 
-    public Object top() throws NoSuchElementException
+    public T top() throws NoSuchElementException
     {
         try
         {
@@ -41,7 +38,7 @@ public class MyStack<T> implements StackADT
         }
     }  
     
-    public Object pop() throws NoSuchElementException
+    public T pop() throws NoSuchElementException
     {
         try
         {
