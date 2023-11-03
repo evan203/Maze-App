@@ -1,10 +1,8 @@
 import java.util.NoSuchElementException;
-import java.util.LinkedList;
-import java.util.Queue;
 
-public class MyQueue implements QueueADT
+public class MyQueue<T> implements QueueADT<T>
 {
-    private Node first;
+    private Node<T> first;
 
     /**
      * Constructs an empty stack.
@@ -18,9 +16,9 @@ public class MyQueue implements QueueADT
      * Add an item to the queue
      * @param item the data item to add (of type T)
      */
-    public void enqueue(Object item)
+    public void enqueue(T item)
     {
-        Node newItem = new Node();
+        Node<T> newItem = new Node<T>();
         newItem.data = item;
 
         if(first == null)
@@ -29,7 +27,7 @@ public class MyQueue implements QueueADT
         }
         else
         {
-            Node current = first;
+            Node<T> current = first;
             while(current.next != null)
             {
                 current = current.next;
@@ -43,13 +41,13 @@ public class MyQueue implements QueueADT
      * @return the front item in the queue
      * @throws NoSuchElementException if the queue is empty
      */
-    public Object dequeue() throws NoSuchElementException
+    public T dequeue() throws NoSuchElementException
     {
         if (this.isEmpty())
         {
             throw new NoSuchElementException();
         }
-        Object item = first.data;
+        T item = first.data;
         first = first.next;
         return item;
     }
@@ -59,7 +57,7 @@ public class MyQueue implements QueueADT
      * @return the front item in the queue
      * @throws NoSuchElementException if the queue is empty
      */
-    public Object front() throws NoSuchElementException
+    public T front() throws NoSuchElementException
     {
         if (this.isEmpty())
         {
@@ -75,7 +73,7 @@ public class MyQueue implements QueueADT
     public int size()
     {
         int count = 0;
-        Node node = first;
+        Node<T> node = first;
         while (node != null)
         {
             node = node.next;
@@ -107,9 +105,9 @@ public class MyQueue implements QueueADT
     // Class Node
     // Node is a static class because it doesn't have to access
     // anything in Linked List
-    static class Node
+    static class Node<T>
     {
-        public Object data;
-        public Node next;
+        public T data;
+        public Node<T> next;
     }
 }
