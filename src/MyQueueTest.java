@@ -2,18 +2,16 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 public class MyQueueTest 
 {
-    private MyQueue queue;
+    private MyQueue<String> queue;
 
     @Before
     public void setUp() 
     {
-        queue = new MyQueue();
+        queue = new MyQueue<String>();
     }
 
     @Test

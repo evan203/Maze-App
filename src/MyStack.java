@@ -3,13 +3,13 @@ import java.util.*;
 
 public class MyStack<T> implements StackADT
 {
-    private ArrayList list;
+    private ArrayList<T> list;
+    T t;
 
-    T obj;
 
-    public MyStack(T obj)
+    public MyStack(T t)
     {
-        this.obj = obj;
+        this.t = t;
         list = new ArrayList<T>();
     }
 
@@ -54,7 +54,7 @@ public class MyStack<T> implements StackADT
         }
     } 
 
-    public void push(Object s)
+    public void push(T s)
     {
         list.add(s);
     }
