@@ -1,27 +1,27 @@
 public class MazeSolverQueue {
-    private MyQueue<Square> stack;
+    private MyQueue<Square> queue;
     public MazeSolverQueue(Maze m)
     {
         super(m);
-        stack = new MyQueue<Square>();
+        queue = new MyQueue<Square>();
     }
 
     public void makeEmpty()
     {
-        while (!stack.isEmpty())
-            stack.pop();
+        while (!queue.isEmpty())
+            queue.dequeue();
     }
     public boolean isEmpty()
     {
-        return stack.isEmpty();
+        return queue.isEmpty();
     }
     public void add(Square sq)
     {
-        stack.push(sq);
+        queue.enqueue(sq);
     }
     public Square next()
     {
-        return stack.top();
+        return queue.front();
     }
     
 
