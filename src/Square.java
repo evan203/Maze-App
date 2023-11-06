@@ -2,13 +2,27 @@ public class Square {
     int row;
     int col;
     int type;
+    private Square previous = null;
+
     public Square(int row, int col, int type)
     {
         this.row = row;
         this.col = col;
         this.type = type;
 
+        previous = prev;
+
     }
+
+    public void setPreviousSquare(Square s)
+    {
+        previous = s;
+    }
+    public Square getPreviousSquare()
+    {
+        return previous;
+    }
+
     public String toString(){
         switch (this.type)
         {
