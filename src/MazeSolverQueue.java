@@ -1,4 +1,4 @@
-public class MazeSolverQueue {
+public class MazeSolverQueue extends MazeSolver{
     private MyQueue<Square> queue;
     public MazeSolverQueue(Maze m)
     {
