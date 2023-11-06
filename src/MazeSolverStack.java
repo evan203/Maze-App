@@ -5,6 +5,7 @@ public class MazeSolverStack extends MazeSolver{
     {
         super(m);
         stack = new MyStack<Square>();
+        this.add(m.getStart());
     }
 
     public void makeEmpty()
@@ -18,6 +19,8 @@ public class MazeSolverStack extends MazeSolver{
     }
     public void add(Square sq)
     {
+        if (stack == null)
+            return;
         stack.push(sq);
     }
     public Square next()

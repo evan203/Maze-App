@@ -4,6 +4,7 @@ public class MazeSolverQueue extends MazeSolver{
     {
         super(m);
         queue = new MyQueue<Square>();
+        this.add(m.getStart());
     }
 
     public void makeEmpty()
@@ -17,6 +18,8 @@ public class MazeSolverQueue extends MazeSolver{
     }
     public void add(Square sq)
     {
+        if (queue == null)
+            return;
         queue.enqueue(sq);
     }
     public Square next()

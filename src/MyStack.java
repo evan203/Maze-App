@@ -27,6 +27,8 @@ public class MyStack<T> implements StackADT<T>
 
     public T top() throws NoSuchElementException
     {
+        if (list.size() == 0)
+            return null;
         try
         {
             return list.get(list.size() - 1);

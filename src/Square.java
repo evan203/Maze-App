@@ -2,16 +2,14 @@ public class Square {
     int row;
     int col;
     int type;
-    private Square previous = null;
+    private Square previous;
 
     public Square(int row, int col, int type)
     {
         this.row = row;
         this.col = col;
         this.type = type;
-
-        previous = prev;
-
+        previous = null;
     }
 
     public void setPreviousSquare(Square s)

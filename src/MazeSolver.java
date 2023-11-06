@@ -11,30 +11,19 @@ public abstract class MazeSolver
     abstract public void add(Square sq);
 
     abstract public Square next();
+
+    public boolean solved;
     
     MazeSolver(Maze maze)
     {
         this.maze = maze;
+        solved = false;
+
     }
 
     public boolean isSolved()
     {
-        boolean solve;
-        ArrayList<Square> neighbors = maze.getNeighbors(maze.getFinish());
-        for (Square s : neighbors)
-        {
-            if (s.getType() == 6)
-            {
-                return true;
-            }
-        }
-
-        if (step() == null)
-        {
-            return true;
-        }
-
-        return false;
+        return solved;
     }
 
     public String getPath()
@@ -69,9 +58,19 @@ public abstract class MazeSolver
     public Square step()
     {
         Square current = next();
+        if (current == null)
+            // can't continue
+            return null;
         current.type = 5;
 
         ArrayList<Square> neighbors = maze.getNeighbors(current);
+        if (neighbors.size() == 0)
+        {
+            // this is a dead end
+            // somehow go backwards to the previous 
+            this.next(); // remove the last thing in worklist?
+            this.add(current.getPreviousSquare());
+        }
         for (Square s : neighbors)
         {
             if (s.getType() == 0)
@@ -79,6 +78,13 @@ public abstract class MazeSolver
                 s.setPreviousSquare(current);
                 add(s);
             }
+            if (s.getType() == 3)
+                {
+                // we found the end?
+                solved = true;
+                s.setPreviousSquare(current);
+                add(s);
+                }
         }
 
         return current;
@@ -86,9 +92,10 @@ public abstract class MazeSolver
 
     public void solve()
     {
-        while (step() != null)
+        while (!this.isSolved() || ! this.isEmpty())
         {
             step();
         }
+
     }
 }

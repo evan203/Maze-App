@@ -3,7 +3,6 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 public class MazeTest {
     private Square square;
