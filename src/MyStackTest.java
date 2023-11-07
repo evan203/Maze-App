@@ -2,12 +2,12 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 public class MyStackTest {
-    private MyStack stack;
+    private MyStack<String> stack;
 
     @Before
     public void setUp() {
         // Initialize a Square and Maze object before each test
-        stack = new MyStack();
+        stack = new MyStack<String>();
     }
     
     @Test

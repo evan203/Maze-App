@@ -2,13 +2,25 @@ public class Square {
     int row;
     int col;
     int type;
+    private Square previous;
+
     public Square(int row, int col, int type)
     {
         this.row = row;
         this.col = col;
         this.type = type;
-
+        previous = null;
     }
+
+    public void setPreviousSquare(Square s)
+    {
+        previous = s;
+    }
+    public Square getPreviousSquare()
+    {
+        return previous;
+    }
+
     public String toString(){
         switch (this.type)
         {
@@ -23,7 +35,7 @@ public class Square {
             case 4:
                 return "o"; // is on the solver work list
             case 5:
-                return "."; // has been explored
+                return ". "; // has been explored
             case 6:
                 return "x"; // is on the final path to the exit
             default:
