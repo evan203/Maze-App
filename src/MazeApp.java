@@ -393,7 +393,7 @@
  		pathDisplay.setText("Maze is unsolved");
  	    }
  	}
-     }
+    }
 
      /**
       * @param args

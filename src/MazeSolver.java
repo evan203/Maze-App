@@ -11,80 +11,56 @@ public abstract class MazeSolver
     abstract public void add(Square sq);
 
     abstract public Square next();
-
-    public boolean solved;
     
     MazeSolver(Maze maze)
     {
         this.maze = maze;
-        solved = false;
-
     }
 
     public boolean isSolved()
     {
-        return solved;
+        if (maze.getFinish().getPreviousSquare() != null || this.isEmpty())
+            return true;
+
+        return false;
     }
 
     public String getPath()
     {
+        Square f = maze.getFinish();
+        if (f.getPreviousSquare() == null)
+            return "No such path";
 
-        Square n = null;
-
-        String path = "";
-        Square square = maze.getFinish();
-        for (Square s : maze.getNeighbors(square))
-        {
-            if (s.getType() == 1)
-            {
-                n = s;
-            }
-        }
-        if (n == null) return null;
-
-        while (n != null)
-        {
-            // add n's coordinates to the path string
-            String cords = "[" + n.col + "," + n.row + "]";
-            path = cords + " " + path;
-
-            n = n.getPreviousSquare();
-        }
-        
-        return "No such path";
+        return getPath(f.getPreviousSquare()) + " [" + f.getCol() + "," + f.getRow() + "]";
     }
+    private String getPath(Square s)
+    {
+        if (s.getPreviousSquare() == null)
+            return "[" + s.getCol() + "," + s.getRow() + "]";
 
+        s.type = 6;
+        return getPath(s.getPreviousSquare()) + " [" + s.getCol() + "," + s.getRow() + "]";
+    }
 
     public Square step()
     {
         Square current = next();
         if (current == null)
+        {
             // can't continue
             return null;
-        current.type = 5;
+        }
+        if (current.getType() == 0)
+            current.type = 5;
 
         ArrayList<Square> neighbors = maze.getNeighbors(current);
-        if (neighbors.size() == 0)
-        {
-            // this is a dead end
-            // somehow go backwards to the previous 
-            this.next(); // remove the last thing in worklist?
-            this.add(current.getPreviousSquare());
-        }
         for (Square s : neighbors)
         {
-            if (s.getType() == 0)
+            if ((s.getType() == 0 || s.getType() == 3) && s.getPreviousSquare() == null)
             {
                 s.setPreviousSquare(current);
                 add(s);
             }
-            if (s.getType() == 3)
-                {
-                // we found the end?
-                solved = true;
-                s.setPreviousSquare(current);
-                add(s);
-                }
         }
 
         return current;
@@ -92,7 +68,7 @@ public abstract class MazeSolver
 
     public void solve()
     {
-        while (!this.isSolved() || ! this.isEmpty())
+        while (!this.isSolved())
         {
             step();
         }

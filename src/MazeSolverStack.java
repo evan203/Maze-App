@@ -19,13 +19,15 @@ public class MazeSolverStack extends MazeSolver{
     }
     public void add(Square sq)
     {
-        if (stack == null)
-            return;
         stack.push(sq);
+        //System.out.println(stack.size() + " :: " + sq.getCol() + " " + sq.getRow());
+
     }
     public Square next()
     {
-        return stack.top();
+        //System.out.println("Size (next): " + stack.size());
+
+        return stack.pop();
     }
     
 

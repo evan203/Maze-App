@@ -42,6 +42,9 @@ public class MyStack<T> implements StackADT<T>
     
     public T pop() throws NoSuchElementException
     {
+        if (list.size() == 0)
+            return null;
+
         try
         {
             return list.remove(list.size() - 1);

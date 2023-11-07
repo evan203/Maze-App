@@ -18,13 +18,14 @@ public class MazeSolverQueue extends MazeSolver{
     }
     public void add(Square sq)
     {
-        if (queue == null)
-            return;
+        //System.out.println(sq == null);
+        //System.out.println(queue == null);
+
         queue.enqueue(sq);
     }
     public Square next()
     {
-        return queue.front();
+        return queue.dequeue();
     }
     
 
